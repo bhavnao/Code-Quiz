@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Code Quiz</title>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+
+
+
+</head>
+
+<body>
+    <div class="start_btn"><button>Start Quiz</button></div>
+
+    <div class="info_box">
+        <div class="info_title">
+            <span>Some Rules of this Quiz</span>
+        </div>
+
+        <div class="info_list">
+            <div class="info">1.You will have <span>120 seconds</span>to finish this quiz.</div>
+            <div class="info">2.You will have 4 options for each question.</div>
+            <div class="info">3.When you give an incorrect answer,5 seconds will be subtracted from the clock.</div>
+            <div class="info">4.Each correct answers will give you 5 points.</div>
+        </div>
+
+        <div class="buttons">
+            <button class="exit">Exit</button>
+            <button class="continue">Continue</button>
+        </div>
+    </div>
+    <div class="quiz_box">
+        <header>
+            <div class="title">Code Quiz</div>
+            <div class="timer">
+               <div class="time_text">Time left</div>
+               <div class="timer_sec">120 </div>
+            </div>
+        </header>
+        <section>
+            <div class="question">
+                <span>What is the name of the tallest mountain in the world</span>
+            </div>
+            <div class="option_list">
+                <div class="option">
+                    <span>Mount Everest</span>
+                    <div class="icon tick"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="option">
+                    <span>Makalu</span>
+                    <div class="icon cross"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="option">
+                    <span>Kilimanjaro</span>
+                    <div class="icon cross"><i class="fas fa-times"></i></div>
+                </div>
+                <div class="option">
+                    <span>Mount Kea</span>
+                    <div class="icon cross"><i class="fas fa-times"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="total_questions">
+                <span><p>1 </p>of <p>10</p> Questions</span>
+            </div>
+            <button class="next_question">Next Question</button>
+        </footer>
+    </div>
+
+    <div class="result_box">
+        <div class="finish">Yay,you have finished the quiz.</div>
+        <div class="score">You score is<p>100</p>points.</div>
+        <form class="form">
+            <label for="name">Enter Your Name:</label>
+            <input type="text" id="name" name="name"><br>
+            <input class="submit" type="submit" value="Submit">
+          </form>
+    </div>
+
+    <div class="finish_box">
+        <h1>Highest Scores:</h1>
+      <div class="buttons">
+        <button class="continue">Replay Quiz</button>
+        <button class="exit">Quit Quiz</button>
+      </div>
+    </div>
+
+    
+
+
+<script src="./assets/js/script.js"></script>
+
+</body>
+
+</html>
