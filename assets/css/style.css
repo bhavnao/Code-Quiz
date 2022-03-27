@@ -20,7 +20,8 @@ body{
 
 .info_box.activeInfo,
 .quiz_box.activeQuiz,
-.result_box.activeResult{
+.result_box.activeResult,
+.finish_box.activeFinish{
     display: block;
 }
 
