@@ -15,6 +15,13 @@ body{
     left:50%;
     border: 3px solid #9b1c94;
     transform:translate(-50%, -50%);
+    transition:all 0.3s ease;
+}
+
+.info_box.activeInfo,
+.quiz_box.activeQuiz,
+.result_box.activeResult{
+    display: block;
 }
 
 .start_btn button{
@@ -28,6 +35,11 @@ body{
     background-color: #fff;
     cursor: pointer;
     
+}
+
+.start_btn button:hover{
+    background-color: #9b1c94;
+    color:#fff;
 }
 
 .info_box{
@@ -106,7 +118,7 @@ transition: all 0.3s ease;
 }
 
 .quiz_box{
-    
+    display: none;
     width:550px;
     background-color: #fff;
     border-radius: 5px;
@@ -229,6 +241,21 @@ transition: all 0.3s ease;
         background: #ee97a2;
     }
 
+    .option_list .option.correct{
+        border-color: #1b8d36;
+        color:#1b8d36 ;
+        background: #74e990;
+    }
+
+    .option_list .option.incorrect{
+        border-color: #e62a43;
+        color:#e62a43 ;
+        background: #ee97a2;
+    }
+
+    .option_list .option.disabled{
+      pointer-events: none;  
+    }
     .quiz_box footer{
         height: 60px;
         width: 100%;
@@ -253,6 +280,7 @@ transition: all 0.3s ease;
     }
 
     footer .next_question{
+        display:none;
         height: 40px;
         padding: 0 13px;
         font-size: 18px;
@@ -273,14 +301,21 @@ transition: all 0.3s ease;
         background-color: #fff;
         width: 500px;
         padding: 30px 30px;
-        border-radius: 5px;
-        
+        border-radius: 5px;        
         text-align: center;
         align-items: center;
         flex-direction: column;
         justify-content: space-between;
         box-shadow: 0px 3px 5px 1px rgba(0, 0,0,0.1);
 
+    }
+
+    .result_box .form #name{
+       padding: 12px 20px;
+       margin: 8px 0;
+       box-sizing: border-box;
+       border: 1px solid #9b1c94;
+       border-radius:5px;;
     }
 
     .result_box .finish {
@@ -304,7 +339,7 @@ transition: all 0.3s ease;
         font-size: 30px;
     }
 
-    .result_box .form .submit{
+    .result_box .form #submit{
         margin:20px;
         padding: 8px 20px;
         font-weight: 500px;
