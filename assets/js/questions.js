@@ -65,31 +65,32 @@ var questions = [
 },
 {
     num: 8,
-    question: "What is the name of the tallest mountain in the world?",
-    answer: "Mount Everest",
-    options: [ "Mount Everest",
-              "Makalu",
-              "Kilimanjaro",
-              "Mount Kea" ]
+    question: "Which US state has the longest coastline?",
+    answer: "Alaska",
+    options: [ "California",
+              "Alaska",
+              "Louisiana",
+              "Washington" ]
 },
 {
     num: 9,
-    question: "What is the name of the tallest mountain in the world?",
-    answer: "Mount Everest",
-    options: [ "Mount Everest",
-              "Makalu",
-              "Kilimanjaro",
-              "Mount Kea" ]
+    question: "Which country is home to the most volcanoes?",
+    answer: "Indonesia",
+    options: [ "Indonesia",
+              "Russia",
+              "Argentina",
+              "Kenya" ]
 },
 {
     num: 10,
-    question: "What is the name of the tallest mountain in the world?",
-    answer: "Mount Everest",
-    options: [ "Mount Everest",
-              "The 183° meridian",
-              "The 360° meridian",
-              "The 90° meridian" ]
-},
-
-
+    question: "Which is the smallest country in the world?",
+    answer: "Vatican City",
+    options: [ "San Marino",
+              "Barbados",
+              "Maldives",
+              "Vatican City" ]
+}
 ];
+
+
+

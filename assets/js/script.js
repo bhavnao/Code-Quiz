@@ -10,13 +10,17 @@ var que_text = document.querySelector(".que_text");
 var option_list = document.querySelector(".option_list");
 var next_btn = quiz_box.querySelector(".next_question");
 var timeCount = quiz_box.querySelector(".timer .timer_sec");
-var replay_quiz = finish_box.querySelector(".buttons .continue");
-var quit_quiz = finish_box.querySelector(".buttons .exit");
+var replay_btn = finish_box.querySelector(".buttons .continue");
+var quit_btn = finish_box.querySelector(".buttons .exit");
 var lastCorrect = true;
+var que_count = 0;
+var que_num = 1;
 var game = {
     score: 0,
-    userName: null
+    userName: null,
+    playTime: null
 };
+
 
 //when start button is clicked, show the info box
 start_btn.addEventListener("click", function () {
@@ -25,6 +29,11 @@ start_btn.addEventListener("click", function () {
 
 // when exit button is clicked, hide the info box
 exit_btn.addEventListener("click", function () {
+    game = {
+        score: 0,
+        userName: null,
+        playTime: null
+    };
     info_box.classList.remove("activeInfo");
 });
 
@@ -40,8 +49,7 @@ continue_btn.addEventListener("click", function () {
 
 
 
-var que_count = 0;
-var que_num = 1;
+
 
 //when next question is clicked
 
@@ -91,7 +99,7 @@ function optionSelected(answer) {
         console.log("answer is correct");
         answer.classList.add("correct");
         answer.insertAdjacentHTML("beforeend", tickIcon);
-        game.score = game.score + 10;        
+        game.score = game.score + 10;
         lastCorrect = true;
     } else {
         console.log("answer is incorrect");
@@ -124,29 +132,32 @@ function quesCounter(index) {
 }
 
 //  function for the timer
-function startTimer(time){
-    counter = setInterval (timer,1000);
-    function timer(){
+function startTimer(time) {
+    counter = setInterval(timer, 1000);
+    function timer() {
 
         timeCount.textContent = time;
-        if(lastCorrect)
-         time--;
-        else if((time - 5)> 0)
-         time = time - 5 ;
+        if (lastCorrect)
+            time--;
+        else if ((time - 5) > 0) {
+            time = time - 5;
+            lastCorrect = true;//Reduce 5 seconds only once
+        }
         else
-         time = 0;
+            time = 0;
 
-        if(time === 0){
+        if (time === 0) {
             clearInterval(counter);
-      }
-    }}
+        }
+    }
+}
 
 //function for the score
 function finalScore() {
     var final_score = result_box.querySelector(".score");
-    var score_tag =  '<span>You score is '+ game.score +' points.</span>';
+    var score_tag = '<span>You score is ' + game.score + ' points.</span>';
     final_score.innerHTML = score_tag;
-   console.log("Final Score is - " + game.score);
+    console.log("Final Score is - " + game.score);
 }
 
 
@@ -158,13 +169,91 @@ function showResultBox() {
     finalScore();
 }
 
-var nameInput = document.querySelector("#name");
+function sortByProperty(property) {
+    return function (a, b) {
+        if (a[property] > b[property])
+            return -1;
+        else if (a[property] < b[property])
+            return 1;
+
+        return 0;
+    }
+}
+
+function showFinishBox() {
+    result_box.classList.remove("activeResult");
+    finish_box.classList.add("activeFinish");
+    var final_score = finish_box.querySelector(".finalscore");
+    var score_tag = '<span>' + game.userName + ': Your final score is <b>' + game.score + '</b> points.</span>';
+    final_score.innerHTML = score_tag;
+    //Local Storage Maintenance
+    var tempArray = GetLocalStorageArray("ResultsArray");
+    //Add items to high scores table
+    var scores_table = document.getElementById('scores_table');
+    for (var ctr = 0; ctr < tempArray.length; ctr++) {
+        scores_table.innerHTML += '<tr><td>' + tempArray[ctr].userName + '</td><td>' + tempArray[ctr].score + '</td></tr>'; 
+    }
+
+
+}
+
+function GetLocalStorageArray(arrayName) {
+    var tempStr = localStorage.getItem(arrayName);
+    var tempArray = JSON.parse(tempStr);;
+    if (tempArray === null) {
+        tempArray = []; //Initialize array
+    }
+    return tempArray;
+}
+
+function AddToLocalStorageArray(arrayName, tempArray) {
+    tempArray.sort(sortByProperty("score")); //Sort by score
+    var jsonObj = JSON.stringify(tempArray);
+    // save to localStorage
+    localStorage.setItem("ResultsArray", jsonObj);
+}
+
 var submitButton = document.querySelector("#submit");
 submitButton.addEventListener("click", function (event) {
     event.preventDefault();
+    var nameInput = document.querySelector("#name");
     var name = document.querySelector("#name").value;
     console.log(name);
-   
+    // Set user name
+    game.userName = name;
+    game.playTime = new Date();
+    //Local Storage Maintenance
+    var tempArray = GetLocalStorageArray("ResultsArray");
+    tempArray.push(game);
+    AddToLocalStorageArray("ResultsArray", tempArray)
+    //Navigate to finish box
+    showFinishBox();
 })
+
+//when replay quiz is clicked
+replay_btn.addEventListener("click", function () {
+
+    game = {
+        score: 0,
+        userName: null,
+        playTime: null
+    };
+    
+    finish_box.classList.remove("activeFinish");
+
+});
+
+
+
+
+// when exit button is clicked, hide the info box
+quit_btn.addEventListener("click", function () {
+    game = {
+        score: 0,
+        userName: null,
+        playTime: null
+    };
+    finish_box.classList.remove("activeFinish");
+});
 
 

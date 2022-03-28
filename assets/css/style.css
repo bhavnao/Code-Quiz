@@ -385,7 +385,19 @@ transition: all 0.3s ease;
 
     }
 
+    .finish_box .finalscore {
+        display:flex;
+        font-size: 30px;
+        font-weight: 500;
+        margin:10px 0;
+    }
+    .finalscore p{
+        font-weight: 600;;
+    }
 
+    table, th, td {
+        border: 1px solid;
+      }
 
     
 
