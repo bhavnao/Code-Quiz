@@ -139,12 +139,12 @@ function startTimer(time) {
         timeCount.textContent = time;
         if (lastCorrect)
             time--;
-        else if ((time - 5) > 0) {
+        else if (!lastCorrect && (time - 5) > 0) {
             time = time - 5;
             lastCorrect = true;//Reduce 5 seconds only once
         }
-        else
-            time = 0;
+        else 
+            time=0;
 
         if (time === 0) {
             clearInterval(counter);
