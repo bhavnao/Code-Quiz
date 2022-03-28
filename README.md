@@ -29,5 +29,9 @@ validate the answers.
 ![Incorrect answer](./assets/images/Screenshot-3.png)
 ![Game over](./assets/images/Screenshot-4.png)
 
+## Link to the deployed application
+
+https://bhavnao.github.io/HW-4-Code-Quiz/
+
 
 
