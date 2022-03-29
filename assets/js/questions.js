@@ -38,7 +38,7 @@ var questions = [
 {
     num: 5,
     question: "Mojave Desert is located in which place?",
-    answer: "Mount Everest",
+    answer: "California, USA",
     options: [  "Peru, Chile",
               "California, USA",
               "China, Mongolia",

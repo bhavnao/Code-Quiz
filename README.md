@@ -1,7 +1,6 @@
 # HW-4-Code-Quiz
 
-We have to create a timed quiz on Javascript fundamentals that stores high scores, has a timer,
-validate the answers.
+We have to create a timed quiz on Javascript fundamentals that stores high scores, has a timer,function that checks the answer.
 
 ## Description
 

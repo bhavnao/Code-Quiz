@@ -1,4 +1,4 @@
-// getting all the elements 
+// initializing variables 
 var start_btn = document.querySelector(".start_btn button");
 var info_box = document.querySelector(".info_box");
 var exit_btn = info_box.querySelector(".buttons .exit");
@@ -85,6 +85,7 @@ function showQuestions(index) {
     }
 }
 
+//tick and cross icons appears when user selects the answer
 var tickIcon = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 var crossIcon = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
@@ -124,7 +125,7 @@ function optionSelected(answer) {
 
 
 
-// no of questions
+// number of questions
 function quesCounter(index) {
     var ques_left = quiz_box.querySelector(".total_questions");
     var ques_tag = '<span><p>' + index + '</p>of<p>' + questions.length + '</p> Questions</span>';
@@ -133,21 +134,21 @@ function quesCounter(index) {
 
 //  function for the timer
 function startTimer(time) {
+    timeCount.textContent = time;
     counter = setInterval(timer, 1000);
-    function timer() {
-
-        timeCount.textContent = time;
+    function timer() {       
         if (lastCorrect)
             time--;
         else if (!lastCorrect && (time - 5) > 0) {
             time = time - 5;
-            lastCorrect = true;//Reduce 5 seconds only once
+            lastCorrect = true;//Reduce 5 seconds when incorrect answer is selected
         }
         else 
             time=0;
-
-        if (time === 0) {
+        timeCount.textContent = time;
+        if (time <= 0) {
             clearInterval(counter);
+            showResultBox();
         }
     }
 }
@@ -161,7 +162,7 @@ function finalScore() {
 }
 
 
-
+//result box appears and quiz hides
 function showResultBox() {
     info_box.classList.remove("activeInfo");
     quiz_box.classList.remove("activeQuiz");
@@ -169,6 +170,7 @@ function showResultBox() {
     finalScore();
 }
 
+//comparing scores from local storage and sort them
 function sortByProperty(property) {
     return function (a, b) {
         if (a[property] > b[property])
@@ -180,14 +182,17 @@ function sortByProperty(property) {
     }
 }
 
+//final box with high scores appears
 function showFinishBox() {
     result_box.classList.remove("activeResult");
     finish_box.classList.add("activeFinish");
     var final_score = finish_box.querySelector(".finalscore");
     var score_tag = '<span>' + game.userName + ': Your final score is <b>' + game.score + '</b> points.</span>';
     final_score.innerHTML = score_tag;
+
     //Local Storage Maintenance
     var tempArray = GetLocalStorageArray("ResultsArray");
+
     //Add items to high scores table
     var scores_table = document.getElementById('scores_table');
     for (var ctr = 0; ctr < tempArray.length; ctr++) {
@@ -213,6 +218,7 @@ function AddToLocalStorageArray(arrayName, tempArray) {
     localStorage.setItem("ResultsArray", jsonObj);
 }
 
+// submitting the name and scores
 var submitButton = document.querySelector("#submit");
 submitButton.addEventListener("click", function (event) {
     event.preventDefault();
@@ -240,6 +246,11 @@ replay_btn.addEventListener("click", function () {
     };
     
     finish_box.classList.remove("activeFinish");
+    info_box.classList.remove("activeInfo");
+    quiz_box.classList.add("activeQuiz");
+    showQuestions(0);
+    quesCounter(1);
+    startTimer(100);
 
 });
 
